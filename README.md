@@ -1,1 +1,1 @@
-https://github.com/sonchikten/zakrivayuschiy-teg-ad
+https://sonchikten.github.io/zakrivayuschiy-teg-ad/

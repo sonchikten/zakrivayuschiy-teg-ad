@@ -89,8 +89,5 @@
 
 .like-icon.is-liked .sparks {
   animation: show-sparks var(--time, 0.3s) ease-in var(--time, 0.3s) 1;
-}
-
-.like-icon.is-liked .sparks {
   opacity: 1;
 }

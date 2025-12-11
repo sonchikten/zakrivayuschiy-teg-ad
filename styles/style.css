@@ -373,9 +373,6 @@ main {
 
 .like-icon.is-liked .sparks {
   animation: show-sparks var(--time) ease-in var(--time) 1;
-}
-
-.like-icon.is-liked .sparks {
   opacity: 1;
 }
 

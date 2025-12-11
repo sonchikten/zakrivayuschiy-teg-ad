@@ -1,15 +1,3 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-*/
-
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
@@ -31,7 +19,7 @@
   align-items: center;
   flex-direction: column;
   font-family: var(--accent-font);
-  font-weight: var(--card-text-weight);
+  font-weight: var(--card-text-weght);
   text-transform: uppercase;
   background-color: var(--background-color);
   border: 2px solid var(--accent-color);
@@ -41,7 +29,7 @@
   margin-bottom: 102px;
 }
 
-.header__logo {
+.header-logo {
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   margin-bottom: 20px;
   padding: 25px 0;
@@ -49,7 +37,7 @@
   text-align: center;
 }
 
-.header__title {
+.header-title {
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   text-wrap: nowrap;
 }
@@ -63,22 +51,50 @@ main {
   justify-content: center;
 }
 
-.content-section {
+section {
   width: 100%;
   outline: 2px solid var(--accent-color);
 }
 
-.card__image {
+.card-image {
   position: relative;
   background-color: grey;
 }
 
-.card__title {
+.first-picture {
+  filter: saturate(35%) contrast(85%) brightness(90%) sepia(30%) hue-rotate(-10deg) grayscale(15%);
+}
+
+.second-picture {
+  filter: brightness(108%) contrast(95%) saturate(362%) hue-rotate(360deg);
+}
+
+.seventh-picture {
+  filter: blur(2px) brightness(96%) hue-rotate(98deg) saturate(141%) contrast(55%);
+}
+
+.sixth-picture {
+  filter: blur(15px);
+}
+
+.fifth-picture {
+  filter: sepia(100%);
+}
+
+.fourth-picture {
+  filter: invert(76%);
+}
+
+.third-picture {
+  filter: hue-rotate(31deg) saturate(128%) contrast(107%);
+}
+
+.card-title {
   padding: 3px 10px;
   font-size: var(--card-title-weight);
 }
 
-.card__image-content {
+.section__card-image {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
@@ -88,7 +104,7 @@ main {
   z-index: 0;
 }
 
-.card__label {
+.card-label {
   position: absolute;
   font-family: var(--accent-font);
   font-size: var(--accent-font-size);
@@ -102,7 +118,7 @@ main {
   color: white;
 }
 
-.card__content {
+.card-text {
   display: flex;
   flex-direction: column;
   gap: 27px;
@@ -110,14 +126,14 @@ main {
 }
 
 @supports ((text-stroke: 1px var(--shadow-color)) or (-webkit-text-stroke: 1px var(--shadow-color))) {
-  .card__label {
+  .card-label {
     text-shadow: none;
     -webkit-text-stroke: 1px var(--shadow-color);
     text-stroke: 1px var(--shadow-color);
   }
 }
 
-.card__actions {
+.button-container {
   display: flex;
   align-self: end;
   gap: 12px;
@@ -128,18 +144,7 @@ main {
   height: 38px;
 }
 
-.save-button {
-  width: 335px;
-  height: 55px;
-  gap: 8px;
-  margin-bottom: 100px;
-  flex-wrap: wrap;
-  z-index: 0;
-}
-
-.card__like-button,
-.save-button,
-.modal__actions button {
+.animated-button {
   border: 2px solid var(--accent-color);
   display: flex;
   justify-content: center;
@@ -150,13 +155,9 @@ main {
   transition: box-shadow 0.3s ease;
   cursor: pointer;
   background-color: var(--background-color);
-  font-family: var(--accent-font);
-  font-size: var(--accent-font-size);
 }
 
-.card__like-button::before,
-.save-button::before,
-.modal__actions button::before {
+.animated-button::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -165,21 +166,15 @@ main {
   translate: -100%;
 }
 
-.card__like-button:hover::before,
-.save-button:hover::before,
-.modal__actions button:hover::before {
+.animated-button:hover::before {
   translate: 0%;
 }
 
-.card__like-button:focus,
-.save-button:focus,
-.modal__actions button:focus {
+.animated-button:focus {
   outline: none;
 }
 
-.card__like-button:focus-visible,
-.save-button:focus-visible,
-.modal__actions button:focus-visible {
+.animated-button:focus-visible {
   box-shadow: 2px 2px var(--accent-color);
 }
 
@@ -191,7 +186,7 @@ main {
   position: relative;
 }
 
-.floppy-icon {
+.floppy-svg {
   mix-blend-mode: difference;
   fill: white;
   inline-size: 21px;
@@ -199,7 +194,7 @@ main {
   z-index: 1;
 } 
 
-.modal__floppy-icon {
+.floppy_svg {
   fill: white;
   color: #fff;
   background-color: transparent;
@@ -216,7 +211,6 @@ main {
   background: none;
   transition: outline 0.3s ease;
   padding: 0px;
-  cursor: pointer;
 }
 
 .card__icon-button:focus {
@@ -227,11 +221,20 @@ main {
   border: 2px solid var(--accent-color);
 }
 
-.modal-dialog::backdrop {
+.dialog-button {
+  width: 335px;
+  height: 55px;
+  gap: 8px;
+  margin-bottom: 100px;
+  flex-wrap: wrap;
+  z-index: 0;
+}
+
+dialog::backdrop {
   background-color: rgb(0 0 0 / 0.75);
 }
 
-.modal-dialog {
+.dialog {
   font-family: var(--accent-font);
   text-transform: uppercase;
   line-height: 1.5;
@@ -242,57 +245,29 @@ main {
   background-color: var(--background-color);
 }
 
-.modal__container {
+.dialog-container {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.modal__content {
+.dialog-item {
   display: flex;
   justify-content: end;
   align-items: center;
   gap: 20px;
 }
 
-.modal__text {
+.dialog-text {
   max-inline-size: 234px;
 }
 
-.modal__actions button {
+.ok__dialog-button button {
   inline-size: 100%;
 }
 
-.modal-ok {
+.ok {
   padding: 11px 0;
-}
-
-.image-filter-one {
-  filter: saturate(35%) contrast(85%) brightness(90%) sepia(30%) hue-rotate(-10deg) grayscale(15%);
-}
-
-.image-filter-two {
-  filter: brightness(108%) contrast(95%) saturate(362%) hue-rotate(360deg);
-}
-
-.image-filter-three {
-  filter: hue-rotate(31deg) saturate(128%) contrast(107%);
-}
-
-.image-filter-four {
-  filter: invert(76%);
-}
-
-.image-filter-five {
-  filter: sepia(100%);
-}
-
-.image-filter-six {
-  filter: blur(15px);
-}
-
-.image-filter-seven {
-  filter: blur(2px) brightness(96%) hue-rotate(98deg) saturate(141%) contrast(55%);
 }
 
 @media (width <= 375px) {
@@ -302,27 +277,27 @@ main {
     padding: 120px 14px;
   }
 
-  .save-button {
+  .dialog-button {
     width: 306px;
     height: 84px;
     flex-direction: column;
   }
 
-  .floppy-icon {
+  .floppy-svg {
     inline-size: 28px;
     block-size: 28px;
   }
 
-  .modal-dialog {
+  .dialog {
     padding: 32px 40px;
   }
 
-  .card__label {
+  .card-label {
     top: 25px;
     right: 11px;
   }
   
-  .modal__text {
+  .dialog-text {
     max-inline-size: 198px;
   }
 }

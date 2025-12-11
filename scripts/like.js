@@ -8,77 +8,76 @@
 Если эти классы поменять в HTML, скрипт перестанет работать. Будьте аккуратны.
 */
 
+const likeHeartArray = document.querySelectorAll('.like-icon');
+const likeButtonArray = document.querySelectorAll('.card__like-button');
+const iconButtonArray = document.querySelectorAll('.card__icon-button');
+
+iconButtonArray.forEach((iconButton, index) => {
+  iconButton.onclick = (event) => {
+    event.preventDefault();  
+    event.stopPropagation();  
+    toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
+  };
+});
+
+likeButtonArray.forEach((button, index) => {
+  button.onclick = (event) => {
+    event.preventDefault();  
+    event.stopPropagation();  
+    toggleIsLiked(likeHeartArray[index], button);
+  };
+});
+
+function toggleIsLiked(heart, button) {
+  heart.classList.toggle('is-liked');
+  setButtonText(heart, button);
+}
+
+function setButtonText(heart, button) {
+  if ([...heart.classList].includes('is-liked')) {
+    setTimeout(
+      () => (button.querySelector('.button__text').textContent = 'Unlike'),
+      500
+    );
+  } else {
+    setTimeout(
+      () => (button.querySelector('.button__text').textContent = 'Like'),
+      500
+    );
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Like script loaded with preventDefault fixes');
   
   const saveButton = document.getElementById('save-button');
   if (saveButton) {
-    saveButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
+    saveButton.onclick = function(event) {
+      event.preventDefault();  
+      event.stopPropagation();  
       
       const dialog = document.getElementById('save-dialog');
       if (dialog && typeof dialog.showModal === 'function') {
         dialog.showModal();
       }
-    });
+    };
   }
-
+  
   const modalOkButton = document.getElementById('modal-ok-button');
   if (modalOkButton) {
-    modalOkButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
+    modalOkButton.onclick = function(event) {
+      event.preventDefault(); 
+      event.stopPropagation(); 
       
       const dialog = document.getElementById('save-dialog');
       if (dialog && typeof dialog.close === 'function') {
         dialog.close();
       }
-    });
+    };
   }
-
-  const likeHeartArray = document.querySelectorAll('.like-icon');
-  const likeButtonArray = document.querySelectorAll('.card__like-button');
-  const iconButtonArray = document.querySelectorAll('.card__icon-button');
-
-  iconButtonArray.forEach((iconButton, index) => {
-    iconButton.addEventListener('click', function(event) {
-      event.preventDefault();  
-      event.stopPropagation();  
-      toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
-    });
-  });
-
-  likeButtonArray.forEach((button, index) => {
-    button.addEventListener('click', function(event) {
-      event.preventDefault();  
-      event.stopPropagation();  
-      toggleIsLiked(likeHeartArray[index], button);
-    });
-  });
 
   document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter' && event.target.tagName === 'BUTTON') {
       event.preventDefault();
     }
   });
-
-  function toggleIsLiked(heart, button) {
-    heart.classList.toggle('is-liked');
-    setButtonText(heart, button);
-  }
-
-  function setButtonText(heart, button) {
-    if ([...heart.classList].includes('is-liked')) {
-      setTimeout(
-        () => (button.querySelector('.button__text').textContent = 'Unlike'),
-        500
-      );
-    } else {
-      setTimeout(
-        () => (button.querySelector('.button__text').textContent = 'Like'),
-        500
-      );
-    }
-  }
 });
